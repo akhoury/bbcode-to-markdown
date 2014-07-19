@@ -51,16 +51,16 @@ var bbcode = require('bbcodejs'),
         }
 
         QuoteTag.prototype._toHTML = function() {
-            var citation, pieces;
-            pieces = ['<blockquote>'];
-            citation = this.params['quote'] || this.params['author'];
-            if (citation) {
-                pieces.push('<small>');
-                pieces.push('@' + citation);
-                pieces.push('</small>1');
-            }
-            pieces.push(this.getContent());
-            pieces.push('</blockquote>');
+            var citation = this.params['quote'] || this.params['author'],
+				pieces = [];
+
+			if (citation) {
+				pieces.push('<small>');
+				pieces.push('@' + citation + ' said:<br>');
+				pieces.push('</small>1');
+			}
+
+            pieces.push('<blockquote>' + this.getContent() + '</blockquote>');
             return pieces;
         };
 
