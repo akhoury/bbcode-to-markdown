@@ -57,7 +57,7 @@ var bbcode = require('bbcodejs'),
 			if (citation) {
 				pieces.push('<small>');
 				pieces.push('@' + citation + ' said:<br>');
-				pieces.push('</small>1');
+				pieces.push('</small>');
 			}
 
             pieces.push('<blockquote>' + this.getContent() + '</blockquote>');
