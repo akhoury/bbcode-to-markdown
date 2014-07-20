@@ -107,10 +107,15 @@ newTags.push({name: 'rtl', klass: ContentOnlyTag});
 newTags.push({name: 'ltr', klass: ContentOnlyTag});
 newTags.push({name: 'shadow', klass: ContentOnlyTag});
 newTags.push({name: 'sub', klass: ContentOnlyTag});
+newTags.push({name: 'sup', klass: ContentOnlyTag});
 newTags.push({name: 'abbr', klass: ContentOnlyTag});
+newTags.push({name: 'acronym', klass: ContentOnlyTag});
 newTags.push({name: 'tt', klass: ContentOnlyTag});
 newTags.push({name: 'color', klass: ContentOnlyTag});
 newTags.push({name: 'colour', klass: ContentOnlyTag});
+newTags.push({name: 'glow', klass: ContentOnlyTag});
+newTags.push({name: 'move', klass: ContentOnlyTag});
+newTags.push({name: 'u', klass: ContentOnlyTag});
 
 // colors, from http://if.invisionfree.com/topic/423042/1/
 var colors = ['Aliceblue', 'Antiquewhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'Blanchedalmond', 'Blue', 'Blueviolet', 'Brown', 'Burlywood', 'Cadetblue', 'Chartreuse', 'Chocolate', 'Coral', 'Cornflowerblue', 'Cornsilk', 'Crimson', 'Cyan', 'Darkblue', 'Darkcyan', 'Darkgoldenrod', 'Darkgray', 'Darkgreen', 'Darkkhaki', 'Darkmagenta', 'Darkolivegreen', 'Darkorange', 'Darkorchid', 'Darkred', 'Darksalmon', 'Darkseagreen', 'Darkslateblue', 'Darkslategray', 'Darkturquoise', 'Darkviolet', 'Deeppink', 'Deepskyblue', 'Dimgray', 'Dodgerblue', 'Firebrick', 'Floralwhite', 'Forestgreen', 'Fuchsia', 'Gainsboro', 'Ghostwhite', 'Gold', 'Goldenrod', 'Gray', 'Green', 'Greenyellow', 'Honeydew', 'Hotpink', 'Indianred', 'Indigo', 'Ivory', 'Khaki', 'Lavender', 'Lavenderblush', 'Lawngreen', 'Lemonchiffon', 'Lightblue', 'Lightcoral', 'Lightcyan', 'Lightgoldenrodyellow', 'Lightgray', 'Lightpink', 'Lightsalmon', 'Lightseagreen', 'Lightskyblue', 'Lightslategray', 'Lightsteelblue', 'Lightyellow', 'Lime', 'Limegreen', 'Linen', 'Magenta', 'Maroon', 'Mediumaquamarine', 'Mediumblue', 'Mediumorchid', 'Mediumpurple', 'Mediumseagreen', 'Mediumslateblue', 'Mediumspringgreen', 'Mediumturquoise', 'Mediumvioletred', 'Midnightblue', 'Mintcream', 'Mistyrose', 'Moccasin', 'Navajowhite', 'Navy', 'Oldlace', 'Olive', 'Olivedrab', 'Orange', 'Orangered', 'Orchid', 'Palegoldenrod', 'Palegreen', 'Paleturquoise', 'Palevioletred', 'Papayawhip', 'Peachpuff', 'Peru', 'Pink', 'Plum', 'Powderblue', 'Purple', 'Red', 'Rosybrown', 'Royalblue', 'Saddlebrown', 'Salmon', 'Sandybrown', 'Seagreen', 'Seashell', 'Sienna', 'Silver', 'Skyblue', 'Slateblue', 'Slategray', 'Snow', 'Springgreen', 'Steelblue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'Whitesmoke', 'Yellow', 'Yellowgreen'];
@@ -125,6 +130,8 @@ newTags.push({name: 'li', klass: LiTag});
 
 newTags.push({name: 'ftp', klass: MaybeSelfAttrTag});
 newTags.push({name: 'anchor', klass: MaybeSelfAttrTag});
+newTags.push({name: 'iurl', klass: MaybeSelfAttrTag});
+newTags.push({name: 'email', klass: MaybeSelfAttrTag});
 
 newTags.push({name: 'br', klass: NewlineTag});
 newTags.push({name: 'time', klass: IgnoredTag});
