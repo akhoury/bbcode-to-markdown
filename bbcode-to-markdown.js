@@ -1,10 +1,11 @@
 var htmlToMd = require('html-md-optional_window'),
     bbcodejs = require('bbcodejs'),
-
+    Entities = require('html-entities').AllHtmlEntities,
+    entities = new Entities(),
     window = require("jsdom").jsdom(null, null, {features: {FetchExternalResources: false}}).createWindow(),
 
 // use a fake window, which will avoid jsdom.jsdom().createWindow() every time, much, much faster, and avoids memory leaks
-    convertHtmlToMd =  (function(){
+    convertHtmlToMd =  (function() {
         return function(str){
             return htmlToMd(str, {window: window})
         }
@@ -19,13 +20,14 @@ var htmlToMd = require('html-md-optional_window'),
         });
 
         var brRe = /<br\s*[\/]?>/gmi;
-        return function(str) {
+        return function(str, cb) {
             str = (str || '').replace(brRe, '[br].[/br]');
-            return convertHtmlToMd(
-                parser.toHTML(str)
-            );
+            str = str.replace(/\[url=\\"(.*)\\"\]/gi, '[url=$1]');
+            str = parser.toHTML(str);
+            str = entities.decode(str);
+            str = convertHtmlToMd(str);
+            return str;
         };
     })();
 
 module.exports = convertBBCodeToMd;
-
