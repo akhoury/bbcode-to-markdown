@@ -1,13 +1,64 @@
-var bbcode = require('bbcodejs'),
-    newTags = [],
+var bbcode = require('bbcodejs');
 
-// coffee spits that
-    __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; },
-    __hasProp = Object.prototype.hasOwnProperty,
-    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child; },
+// todo: move these to a .json file
+var liTags = ['li'];
+var newLineTags = ['br'];
+var ignoredTags = ['time'];
+var quoteTags = ['quote'];
+var maybeSelfAttrTags = ['ftp', 'anchor', 'iurl', 'email'];
+var contentOnlyTags = [
+    'youtube',
+    'soundcloud',
+    'vimeo',
+    'font',
+    'embed',
+    'flash',
+    'bdo',
+    'left',
+    'right',
+    'me',
+    'nobbc',
+    'rtl',
+    'ltr',
+    'shadow',
+    'spoiler',
+    'sub',
+    'sup',
+    'abbr',
+    'acronym',
+    'tt',
+    'color',
+    'colour',
+    'glow',
+    'move',
+    'u',
+    'indent',
 
+    // list of colors from http://if.invisionfree.com/topic/423042/1/
+    'Aliceblue', 'Antiquewhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'Blanchedalmond', 'Blue',
+    'Blueviolet', 'Brown', 'Burlywood', 'Cadetblue', 'Chartreuse', 'Chocolate', 'Coral', 'Cornflowerblue', 'Cornsilk',
+    'Crimson', 'Cyan', 'Darkblue', 'Darkcyan', 'Darkgoldenrod', 'Darkgray', 'Darkgreen', 'Darkkhaki', 'Darkmagenta',
+    'Darkolivegreen', 'Darkorange', 'Darkorchid', 'Darkred', 'Darksalmon', 'Darkseagreen', 'Darkslateblue', 'Darkslategray',
+    'Darkturquoise', 'Darkviolet', 'Deeppink', 'Deepskyblue', 'Dimgray', 'Dodgerblue', 'Firebrick', 'Floralwhite', 'Forestgreen',
+    'Fuchsia', 'Gainsboro', 'Ghostwhite', 'Gold', 'Goldenrod', 'Gray', 'Green', 'Greenyellow', 'Honeydew', 'Hotpink', 'Indianred',
+    'Indigo', 'Ivory', 'Khaki', 'Lavender', 'Lavenderblush', 'Lawngreen', 'Lemonchiffon', 'Lightblue', 'Lightcoral', 'Lightcyan',
+    'Lightgoldenrodyellow', 'Lightgray', 'Lightpink', 'Lightsalmon', 'Lightseagreen', 'Lightskyblue', 'Lightslategray', 'Lightsteelblue',
+    'Lightyellow', 'Lime', 'Limegreen', 'Linen', 'Magenta', 'Maroon', 'Mediumaquamarine', 'Mediumblue', 'Mediumorchid',
+    'Mediumpurple', 'Mediumseagreen', 'Mediumslateblue', 'Mediumspringgreen', 'Mediumturquoise', 'Mediumvioletred', 'Midnightblue',
+    'Mintcream', 'Mistyrose', 'Moccasin', 'Navajowhite', 'Navy', 'Oldlace', 'Olive', 'Olivedrab', 'Orange', 'Orangered',
+    'Orchid', 'Palegoldenrod', 'Palegreen', 'Paleturquoise', 'Palevioletred', 'Papayawhip', 'Peachpuff', 'Peru', 'Pink',
+    'Plum', 'Powderblue', 'Purple', 'Red', 'Rosybrown', 'Royalblue', 'Saddlebrown', 'Salmon', 'Sandybrown', 'Seagreen',
+    'Seashell', 'Sienna', 'Silver', 'Skyblue', 'Slateblue', 'Slategray', 'Snow', 'Springgreen', 'Steelblue', 'Tan', 'Teal',
+    'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'Whitesmoke', 'Yellow', 'Yellowgreen'
+];
 
-    ContentOnlyTag = (function(_super) {
+// coffeescripts spits that, so ama use it
+var __indexOf = Array.prototype.indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
+var __hasProp = Object.prototype.hasOwnProperty;
+var __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor; child.__super__ = parent.prototype; return child };
+
+// new tag Classes
+var ContentOnlyTag = (function(_super) {
         __extends(ContentOnlyTag, _super);
         function ContentOnlyTag() {
             ContentOnlyTag.__super__.constructor.apply(this, arguments);
@@ -51,13 +102,13 @@ var bbcode = require('bbcodejs'),
 
         QuoteTag.prototype._toHTML = function() {
             var citation = this.params['quote'] || this.params['author'],
-				pieces = [];
+                pieces = [];
 
-			if (citation) {
-				pieces.push('<small>');
-				pieces.push('@' + citation + ' said:<br>');
-				pieces.push('</small>');
-			}
+            if (citation) {
+                pieces.push('<small>');
+                pieces.push('@' + citation + ' said:<br>');
+                pieces.push('</small>');
+            }
 
             pieces.push('<blockquote>' + this.getContent() + '</blockquote>');
             return pieces;
@@ -90,63 +141,30 @@ var bbcode = require('bbcodejs'),
         return LiTag;
     })(bbcode.Tag);
 
+var newTags = [];
 
+var pushTag = function(name, klass) {
+    if (name && klass) {
+        newTags.push({name: name.toLowerCase(), klass: klass});
+        newTags.push({name: name.toUpperCase(), klass: klass});
+    }
+};
+var pushTags = function(names, sameKlass) {
+    if (!Array.isArray(names) && names && typeof names === 'string') {
+        names = [names];
+    }
+    if (names && names.length && sameKlass) {
+        names.forEach(function(name) {
+            pushTag(name, sameKlass);
+        });
+    }
+};
 
-newTags.push({name: 'youtube', klass: ContentOnlyTag});
-newTags.push({name: 'soundcloud', klass: ContentOnlyTag});
-newTags.push({name: 'vimeo', klass: ContentOnlyTag});
-newTags.push({name: 'font', klass: ContentOnlyTag});
-newTags.push({name: 'embed', klass: ContentOnlyTag});
-newTags.push({name: 'flash', klass: ContentOnlyTag});
-newTags.push({name: 'bdo', klass: ContentOnlyTag});
-newTags.push({name: 'left', klass: ContentOnlyTag});
-newTags.push({name: 'right', klass: ContentOnlyTag});
-newTags.push({name: 'me', klass: ContentOnlyTag});
-newTags.push({name: 'nobbc', klass: ContentOnlyTag});
-newTags.push({name: 'rtl', klass: ContentOnlyTag});
-newTags.push({name: 'ltr', klass: ContentOnlyTag});
-newTags.push({name: 'shadow', klass: ContentOnlyTag});
-newTags.push({name: 'sub', klass: ContentOnlyTag});
-newTags.push({name: 'sup', klass: ContentOnlyTag});
-newTags.push({name: 'abbr', klass: ContentOnlyTag});
-newTags.push({name: 'acronym', klass: ContentOnlyTag});
-newTags.push({name: 'tt', klass: ContentOnlyTag});
-newTags.push({name: 'color', klass: ContentOnlyTag});
-newTags.push({name: 'colour', klass: ContentOnlyTag});
-newTags.push({name: 'glow', klass: ContentOnlyTag});
-newTags.push({name: 'move', klass: ContentOnlyTag});
-newTags.push({name: 'u', klass: ContentOnlyTag});
-newTags.push({name: 'indent', klass: ContentOnlyTag});
-
-// colors, from http://if.invisionfree.com/topic/423042/1/
-var colors = ['Aliceblue', 'Antiquewhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'Blanchedalmond', 'Blue', 'Blueviolet', 'Brown', 'Burlywood', 'Cadetblue', 'Chartreuse', 'Chocolate', 'Coral', 'Cornflowerblue', 'Cornsilk', 'Crimson', 'Cyan', 'Darkblue', 'Darkcyan', 'Darkgoldenrod', 'Darkgray', 'Darkgreen', 'Darkkhaki', 'Darkmagenta', 'Darkolivegreen', 'Darkorange', 'Darkorchid', 'Darkred', 'Darksalmon', 'Darkseagreen', 'Darkslateblue', 'Darkslategray', 'Darkturquoise', 'Darkviolet', 'Deeppink', 'Deepskyblue', 'Dimgray', 'Dodgerblue', 'Firebrick', 'Floralwhite', 'Forestgreen', 'Fuchsia', 'Gainsboro', 'Ghostwhite', 'Gold', 'Goldenrod', 'Gray', 'Green', 'Greenyellow', 'Honeydew', 'Hotpink', 'Indianred', 'Indigo', 'Ivory', 'Khaki', 'Lavender', 'Lavenderblush', 'Lawngreen', 'Lemonchiffon', 'Lightblue', 'Lightcoral', 'Lightcyan', 'Lightgoldenrodyellow', 'Lightgray', 'Lightpink', 'Lightsalmon', 'Lightseagreen', 'Lightskyblue', 'Lightslategray', 'Lightsteelblue', 'Lightyellow', 'Lime', 'Limegreen', 'Linen', 'Magenta', 'Maroon', 'Mediumaquamarine', 'Mediumblue', 'Mediumorchid', 'Mediumpurple', 'Mediumseagreen', 'Mediumslateblue', 'Mediumspringgreen', 'Mediumturquoise', 'Mediumvioletred', 'Midnightblue', 'Mintcream', 'Mistyrose', 'Moccasin', 'Navajowhite', 'Navy', 'Oldlace', 'Olive', 'Olivedrab', 'Orange', 'Orangered', 'Orchid', 'Palegoldenrod', 'Palegreen', 'Paleturquoise', 'Palevioletred', 'Papayawhip', 'Peachpuff', 'Peru', 'Pink', 'Plum', 'Powderblue', 'Purple', 'Red', 'Rosybrown', 'Royalblue', 'Saddlebrown', 'Salmon', 'Sandybrown', 'Seagreen', 'Seashell', 'Sienna', 'Silver', 'Skyblue', 'Slateblue', 'Slategray', 'Snow', 'Springgreen', 'Steelblue', 'Tan', 'Teal', 'Thistle', 'Tomato', 'Turquoise', 'Violet', 'Wheat', 'White', 'Whitesmoke', 'Yellow', 'Yellowgreen'];
-colors.forEach(function(color) {
-    newTags.push({name: color, klass: ContentOnlyTag});
-    newTags.push({name: color.toLowerCase(), klass: ContentOnlyTag});
-    newTags.push({name: color.toUpperCase(), klass: ContentOnlyTag});
-});
-
-
-newTags.push({name: 'li', klass: LiTag});
-
-newTags.push({name: 'ftp', klass: MaybeSelfAttrTag});
-newTags.push({name: 'anchor', klass: MaybeSelfAttrTag});
-newTags.push({name: 'iurl', klass: MaybeSelfAttrTag});
-newTags.push({name: 'email', klass: MaybeSelfAttrTag});
-
-newTags.push({name: 'br', klass: NewlineTag});
-newTags.push({name: 'time', klass: IgnoredTag});
-newTags.push({name: 'quote', klass: QuoteTag});
-
+pushTags(contentOnlyTags, ContentOnlyTag);
+pushTags(liTags, LiTag);
+pushTags(newLineTags, NewlineTag);
+pushTags(ignoredTags, IgnoredTag);
+pushTags(quoteTags, QuoteTag);
+pushTags(maybeSelfAttrTags, MaybeSelfAttrTag);
 
 module.exports = newTags;
-
-
-
-/*
- //            // this.params['src'] || this.params[this.name],
- //          var width = this.params['width'] || '420',
- //                height = this.params['height'] || '315';
- //
- //            return '<iframe src="' + src + '" width="' + width + '" heigth="' + height + '" frameborder="0" allowfullscreen></iframe>';
- */
