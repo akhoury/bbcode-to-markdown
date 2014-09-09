@@ -15,7 +15,7 @@ convert('[b]oh hai[/b]'); // **oh hai**
 submit an [issue](https://github.com/neocotic/html.md), with input example
 
 ### credits
-based off of these 2 main libs (both a forked for good intentions)
+based off of these 2 main libs (both forked for good intentions)
 - [bbcodejs](https://github.com/vishnevskiy/bbcodejs)
 - [html.md](https://github.com/neocotic/html.md)
 
