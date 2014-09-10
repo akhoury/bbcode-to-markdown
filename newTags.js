@@ -18,6 +18,8 @@ var contentOnlyTags = [
     'right',
     'me',
     'nobbc',
+    'mumble',
+    'presentation',
     'rtl',
     'ltr',
     'shadow',
