@@ -2,7 +2,7 @@ var htmlToMd = require('html-md-optional_window'),
     bbcodejs = require('bbcodejs'),
     Entities = require('html-entities').AllHtmlEntities,
     entities = new Entities(),
-    window = require("jsdom").jsdom(null, null, {features: {FetchExternalResources: false}}).createWindow(),
+    window = require("jsdom-nogyp").jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow,
 
 // use a fake window, which will avoid jsdom.jsdom().createWindow() every time, much, much faster, and avoids memory leaks
     convertHtmlToMd =  (function() {
