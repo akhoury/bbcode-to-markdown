@@ -1,6 +1,6 @@
 {
     "name": "bbcode-to-markdown",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "description": "bbcode-to-markdown ==================",
     "main": "bbcode-to-markdown.js",
     "scripts": {
@@ -19,8 +19,8 @@
     "dependencies": {
         "jsdom-nogyp": "~0.8.3",
         "html-entities": "1.0.10",
-        "html-md-optional_window": "git://github.com/akhoury/html-md-optional_window.git#master",
-        "bbcodejs": "git://github.com/akhoury/bbcodejs#master"
+        "html-md-optional_window": "~3.0.2",
+        "bbcodejs": "~0.0.1"
     }
 
 }
