@@ -1,7 +1,7 @@
 var bbcode = require('bbcodejs');
 
 // todo: move these to a .json file
-var liTags = ['li'];
+var liTags = ['li', '*'];
 var newLineTags = ['br'];
 var ignoredTags = ['time'];
 var quoteTags = ['quote'];
