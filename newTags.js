@@ -1,7 +1,7 @@
 var bbcode = require('bbcodejs');
 
 // todo: move these to a .json file
-var liTags = ['li', '*'];
+var liTags = ['li'];
 var newLineTags = ['br'];
 var ignoredTags = ['time'];
 var quoteTags = ['quote'];
@@ -15,12 +15,14 @@ var contentOnlyTags = [
     'flash',
     'bdo',
     'left',
+    'center',
     'right',
     'me',
     'nobbc',
     'mumble',
     'presentation',
     'rtl',
+    'align',
     'ltr',
     'shadow',
     'spoiler',
@@ -66,7 +68,7 @@ var ContentOnlyTag = (function(_super) {
             ContentOnlyTag.__super__.constructor.apply(this, arguments);
         }
         ContentOnlyTag.prototype._toHTML = function() {
-            return this.renderer.strip(this.getContent(true));
+            return this.getContent();
         };
         return ContentOnlyTag;
     })(bbcode.Tag),
@@ -108,7 +110,7 @@ var ContentOnlyTag = (function(_super) {
 
             if (citation) {
                 pieces.push('<small>');
-                pieces.push('@' + citation + ' said:<br>');
+                pieces.push('@' + citation.split(',')[0] + ' said:<br>');
                 pieces.push('</small>');
             }
 
