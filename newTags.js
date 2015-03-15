@@ -3,7 +3,7 @@ var bbcode = require('bbcodejs');
 // todo: move these to a .json file
 var liTags = ['li'];
 var newLineTags = ['br'];
-var ignoredTags = ['time'];
+var ignoredTags = ['time', 'attach'];
 var quoteTags = ['quote'];
 var maybeSelfAttrTags = ['ftp', 'anchor', 'iurl', 'email'];
 var contentOnlyTags = [
