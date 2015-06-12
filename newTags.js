@@ -5,6 +5,7 @@ var liTags = ['li'];
 var newLineTags = ['br'];
 var ignoredTags = ['time', 'attach'];
 var quoteTags = ['quote'];
+var simpleTags = ['spoiler'];
 var maybeSelfAttrTags = ['ftp', 'anchor', 'iurl', 'email'];
 var contentOnlyTags = [
     'youtube',
@@ -25,7 +26,6 @@ var contentOnlyTags = [
     'align',
     'ltr',
     'shadow',
-    'spoiler',
     'sub',
     'sup',
     'abbr',
@@ -164,6 +164,7 @@ var pushTags = function(names, sameKlass) {
     }
 };
 
+pushTags(simpleTags, bbcode.SimpleTag);
 pushTags(contentOnlyTags, ContentOnlyTag);
 pushTags(liTags, LiTag);
 pushTags(newLineTags, NewlineTag);
