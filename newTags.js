@@ -164,7 +164,10 @@ var pushTags = function(names, sameKlass) {
     }
 };
 
-pushTags(simpleTags, bbcode.SimpleTag);
+simpleTags.forEach(function(tag) {
+    pushTag(tag, bbcode.createSimpleTag(tag));
+});
+
 pushTags(contentOnlyTags, ContentOnlyTag);
 pushTags(liTags, LiTag);
 pushTags(newLineTags, NewlineTag);

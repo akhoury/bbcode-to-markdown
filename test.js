@@ -1,6 +1,7 @@
 var convert = require('./bbcode-to-markdown');
 
 var strings = [
+    '[spoiler yo=dawg]BAAAM!![/spoiler]',
     '[quote author=Luke Larris link=topic=2835.msg20559#msg20559 date=1405282198]<br />test<br />[/quote]<br /><br />hey!',
     '[abbr="a.k.a."]Unknown W. Brackets[/abbr]',
     '[anchor=link_here]text or more BB Code[/anchor];',
@@ -31,6 +32,7 @@ var strings = [
 
 strings.forEach(function(str, i) {
     console.log('===TEST-' + i +'===\n');
-    console.log('before:\n' +  str + '\n');
-    console.log('after:\n' +  convert(str) + '\n\n');
+    console.log('RAW:\n' +  str + '\n');
+    console.log('HTML:\n' +  convert.toHTML(str) + '\n\n');
+    console.log('MD:\n' +  convert(str) + '\n\n');
 });

@@ -20,7 +20,7 @@ var htmlToMd = require('html-md-optional_window'),
         });
 
         var brRe = /<br\s*[\/]?>/gmi;
-        return function(str, cb) {
+        var fn = function(str, cb) {
             str = (str || '').replace(brRe, '[br].[/br]');
             str = str.replace(/\[url=\\"(.*)\\"\]/gi, '[url=$1]');
             str = parser.toHTML(str);
@@ -28,6 +28,10 @@ var htmlToMd = require('html-md-optional_window'),
             str = convertHtmlToMd(str);
             return str;
         };
+
+        fn.toHTML = parser.toHTML.bind(parser);
+        return fn;
     })();
+
 
 module.exports = convertBBCodeToMd;
