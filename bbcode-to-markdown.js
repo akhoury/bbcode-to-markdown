@@ -29,7 +29,12 @@ var htmlToMd = require('html-md-optional_window'),
             return str;
         };
 
-        fn.toHTML = parser.toHTML.bind(parser);
+        // expose some functions
+        
+        fn.bbcodeToHTML = parser.toHTML.bind(parser);
+        fn.toHTML = fn.bbcodeToHTML; // alias
+        fn.htmlToMd = convertHtmlToMd;
+        fn.decodeEntities = entities.decode.bind(entities);
         return fn;
     })();
 
