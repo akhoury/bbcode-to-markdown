@@ -2,12 +2,18 @@ var htmlToMd = require('html-md-optional_window'),
     bbcodejs = require('bbcodejs'),
     Entities = require('html-entities').AllHtmlEntities,
     entities = new Entities(),
-    window = require("jsdom-nogyp").jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow,
+    jsdom = require("jsdom-nogyp"),
 
-// use a fake window, which will avoid jsdom.jsdom().createWindow() every time, much, much faster, and avoids memory leaks
     convertHtmlToMd =  (function() {
-        return function(str){
-            return htmlToMd(str, {window: window})
+        return function(str) {
+            var window = jsdom.jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow;
+            str = htmlToMd(str, {window: window});
+            
+            // Important! Prevents memory leaks. Thanks to @Fidelix
+            // https://github.com/akhoury/nodebb-plugin-import/issues/124
+            window.close();
+            
+            return str;
         }
     })(),
 
