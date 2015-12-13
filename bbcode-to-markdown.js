@@ -26,12 +26,16 @@ var htmlToMd = require('html-md-optional_window'),
         });
 
         var brRe = /<br\s*[\/]?>/gmi;
-        var fn = function(str, cb) {
-            str = (str || '').replace(brRe, '[br].[/br]');
-            str = str.replace(/\[url=\\"(.*)\\"\]/gi, '[url=$1]');
+		var urlRe = /\[url=\\"(.*)\\"\]/gi;
+		
+        return function(str, cb) {
+            str = (str || '').replace(brRe, '\n\r');
+            str = str.replace(urlRe, '[url=$1]');
+            
             str = parser.toHTML(str);
             str = entities.decode(str);
             str = convertHtmlToMd(str);
+            
             return str;
         };
 
