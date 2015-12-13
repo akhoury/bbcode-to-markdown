@@ -27,12 +27,13 @@ var strings = [
     '[/table]',
     '[time]1132812640[/time]',
     '[tt]text or more BB Code[/tt]',
-    '[url=<a rel="nofollow" class="external free" href="http://simplemachines.org">http://simplemachines.org</a>]text or more BB Code[/url]'
+    '[url]http://www.bbcode.org/[/url]',
+    '[url=http://www.bbcode.org/]This be bbcode.org![/url]'
 ];
 
 strings.forEach(function(str, i) {
     console.log('===TEST-' + i +'===\n');
     console.log('RAW:\n' +  str + '\n');
-    console.log('HTML:\n' +  convert.toHTML(str) + '\n\n');
-    console.log('MD:\n' +  convert(str) + '\n\n');
+    console.log('HTML:\n' +  convert.bbcodeToHTML(str) + '\n\n');
+    console.log('MD:\n' +  convert.bbcodeToMarkdown(str) + '\n\n');
 });

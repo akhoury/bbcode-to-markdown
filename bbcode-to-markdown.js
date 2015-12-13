@@ -28,23 +28,24 @@ var htmlToMd = require('html-md-optional_window'),
         var brRe = /<br\s*[\/]?>/gmi;
 		var urlRe = /\[url=\\"(.*)\\"\]/gi;
 		
-        return function(str, cb) {
+        var fn = function(str) {
             str = (str || '').replace(brRe, '\n\r');
             str = str.replace(urlRe, '[url=$1]');
             
             str = parser.toHTML(str);
             str = entities.decode(str);
             str = convertHtmlToMd(str);
-            
+
             return str;
         };
 
         // expose some functions
         
         fn.bbcodeToHTML = parser.toHTML.bind(parser);
-        fn.toHTML = fn.bbcodeToHTML; // alias
-        fn.htmlToMd = convertHtmlToMd;
+        fn.htmlToMarkdown = convertHtmlToMd;
+        fn.bbcodeToMarkdown = fn;
         fn.decodeEntities = entities.decode.bind(entities);
+
         return fn;
     })();
 
