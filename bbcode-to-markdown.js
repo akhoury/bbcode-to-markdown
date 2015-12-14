@@ -28,7 +28,7 @@ newTags.forEach(function(tag, i) {
 	var convertHtmlToMarkdown = function(str) {
 		var window = jsdom.jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow;
 
-		str = (str || '').replace(brRegExp, '\n\r');
+		str = (str || '').replace(brRegExp, '\n');
 		str = htmlToMd(str, {window: window});
 
 		// Important! Prevents memory leaks. Thanks to @Fidelix
