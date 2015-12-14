@@ -1,53 +1,56 @@
-var htmlToMd = require('html-md-optional_window'),
-    bbcodejs = require('bbcodejs'),
-    Entities = require('html-entities').AllHtmlEntities,
-    entities = new Entities(),
-    jsdom = require("jsdom-nogyp"),
 
-    convertHtmlToMd =  (function() {
-        return function(str) {
-            var window = jsdom.jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow;
-            str = htmlToMd(str, {window: window});
-            
-            // Important! Prevents memory leaks. Thanks to @Fidelix
-            // https://github.com/akhoury/nodebb-plugin-import/issues/124
-            window.close();
-            
-            return str;
-        }
-    })(),
+var htmlToMd = require('html-md.js');
+var jsdom = require("jsdom-nogyp");
 
-    newTags = require('./newTags'),
-
-    convertBBCodeToMd = (function() {
-        var parser = new bbcodejs.Parser();
-        newTags.forEach(function(tag, i) {
-            parser.registerTag(tag.name, tag.klass);
-        });
-
-        var brRe = /<br\s*[\/]?>/gmi;
-		var urlRe = /\[url=\\"(.*)\\"\]/gi;
-		
-        var fn = function(str) {
-            str = (str || '').replace(brRe, '\n\r');
-            str = str.replace(urlRe, '[url=$1]');
-            
-            str = parser.toHTML(str);
-            str = entities.decode(str);
-            str = convertHtmlToMd(str);
-
-            return str;
-        };
-
-        // expose some functions
-        
-        fn.bbcodeToHTML = parser.toHTML.bind(parser);
-        fn.htmlToMarkdown = convertHtmlToMd;
-        fn.bbcodeToMarkdown = fn;
-        fn.decodeEntities = entities.decode.bind(entities);
-
-        return fn;
-    })();
+var Entities = require('html-entities').AllHtmlEntities;
+var entities = new Entities();
 
 
-module.exports = convertBBCodeToMd;
+var bbcodejs = require('bbcodejs');
+var newTags = require('./newTags');
+var parser = new bbcodejs.Parser();
+
+newTags.forEach(function(tag, i) {
+	parser.registerTag(tag.name, tag.klass);
+});
+
+(function(module) {
+
+	var urlRegExp = /\[url=\\"(.*)\\"\]/gi;
+	var convertBbcodeToHml = function (str) {
+		str = str.replace(urlRegExp, '[url=$1]')
+		str = parser.toHTML(str);
+		str = entities.decode(str);
+		return str;
+	};
+
+	var brRegExp = /<br\s*[\/]?>/gmi;
+	var convertHtmlToMarkdown = function(str) {
+		var window = jsdom.jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow;
+
+		str = (str || '').replace(brRegExp, '\n\r');
+		str = htmlToMd(str, {window: window});
+
+		// Important! Prevents memory leaks. Thanks to @Fidelix
+		// https://github.com/akhoury/nodebb-plugin-import/issues/124
+		window.close();
+		return str;
+	};
+
+	var convertBbcodeToMarkdown = function(str) {
+		str = convertHtmlToMarkdown(convertBbcodeToHml(str));
+		return str;
+	};
+
+	// backward compatible
+	var convert = convertBbcodeToMarkdown;
+
+	// expose some more functions and aliases
+	convert.bbcodeToHTML = convertBbcodeToHml;
+	convert.bbcodeToMarkdown = convertBbcodeToMarkdown;
+	convert.htmlToMarkdown = convertHtmlToMarkdown;
+	convert.decodeEntities = entities.decode.bind(entities);
+
+	module.exports = convert;
+
+})(module);
