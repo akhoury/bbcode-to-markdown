@@ -19,7 +19,7 @@
     "dependencies": {
         "jsdom-nogyp": "~0.8.3",
         "html-entities": "1.0.10",
-        "html-md.js": "^1.0.1",
+        "html-md.js": "^1.0.2",
         "bbcodejs": "^0.0.3"
     }
 
