@@ -18,9 +18,9 @@
     "homepage": "https://github.com/akhoury/bbcode-to-markdown",
     "dependencies": {
         "jsdom-nogyp": "~0.8.3",
-        "html-entities": "1.0.10",
-        "html-md.js": "^1.0.2",
-        "bbcodejs": "^0.0.3"
+        "html-entities": "^1.2",
+        "html-md.js": "^3.0",
+        "bbcodejs": "0.0.3"
     }
 
 }
