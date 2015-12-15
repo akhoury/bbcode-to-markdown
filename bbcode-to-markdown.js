@@ -24,16 +24,16 @@ newTags.forEach(function(tag, i) {
 		return str;
 	};
 
-	var brRegExp = /<br\s*[\/]?>/gmi;
+	//var brRegExp = /<br\s*[\/]?>/gmi;
 	var convertHtmlToMarkdown = function(str) {
-		var window = jsdom.jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow;
+		//var window = jsdom.jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow;
 
-		str = (str || '').replace(brRegExp, '\n');
-		str = htmlToMd(str, {window: window});
-
+		//str = (str || '').replace(brRegExp, '\n');
+		//str = htmlToMd(str, {window: window});
+		str =  htmlToMd(str);
 		// Important! Prevents memory leaks. Thanks to @Fidelix
 		// https://github.com/akhoury/nodebb-plugin-import/issues/124
-		window.close();
+		//window.close();
 		return str;
 	};
 
