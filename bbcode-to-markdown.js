@@ -1,5 +1,5 @@
 
-var htmlToMd = require('html-md.js');
+var htmlToMd = require('html-md');
 var jsdom = require("jsdom-nogyp");
 
 var Entities = require('html-entities').AllHtmlEntities;
