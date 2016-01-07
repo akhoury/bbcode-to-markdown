@@ -11,13 +11,13 @@ convert('[b]oh hai[/b]'); // **oh hai**
 
 ```
 
-### new or unconverted tags?
+### New or unconverted tags?
 submit an [issue](https://github.com/akhoury/bbcode-to-markdown/issues), with input example
 
-### credits
+### Credits
 based off of these main libs
 - [bbcodejs](https://github.com/vishnevskiy/bbcodejs) (forked for good intentions)
 - [to-markdown](https://github.com/domchristie/to-markdown)
 
-### license
+### License
 MIT
