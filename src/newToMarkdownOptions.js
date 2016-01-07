@@ -13,13 +13,13 @@ var options = extend(true, {
 				debugger;
 				return '```\n' + content + '\n```';
 			}
+		},
+		{
+			filter: 'spoiler',
+			replacement: function (content) {
+				return '\n>! ' + content.split('\n').join('\n>! ');
+			}
 		}
-		//, {
-		//	filter: 'spoiler',
-		//	replacement: function (content) {
-		//		return '\n>! ' + content.split('\n').join('\n>! ');
-		//	}
-		//}
 	]
 }, defaults);
 
