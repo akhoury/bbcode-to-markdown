@@ -1,6 +1,6 @@
 {
   "name": "bbcode-to-markdown",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "bbcode-to-markdown ==================",
   "main": "./src/bbcode-to-markdown.js",
   "scripts": {
@@ -20,6 +20,7 @@
     "bbcodejs": "^0.0.4",
     "extend": "^3.0.0",
     "html-entities": "^1.2.0",
+    "html-md.js": "^1.0.2",
     "jsdom-nogyp": "~0.8.3",
     "to-markdown": "^1.3.0"
   }

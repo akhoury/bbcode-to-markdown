@@ -1,5 +1,6 @@
 
 var extend = require('extend');
+var htmlMd = require('html-md.js');
 var toMarkdown = require('to-markdown');
 var jsdom = require("jsdom-nogyp");
 
@@ -18,6 +19,18 @@ var newToMarkdownOptions = require('./newToMarkdownOptions');
 
 (function(module) {
 
+	var htmlMdjs = function (str) {
+		var window = jsdom.jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow;
+
+		str = (str || '').replace(brRegExp, '\n');
+		str = htmlMd(str, {window: window});
+
+		// Important! Prevents memory leaks. Thanks to @Fidelix
+		// https://github.com/akhoury/nodebb-plugin-import/issues/124
+		window.close();
+		return str;
+	};
+
 	var urlRegExp = /\[url=\\"(.*)\\"\]/gi;
 	var convertBbcodeToHml = function (str) {
 		str = str.replace(urlRegExp, '[url=$1]');
@@ -31,7 +44,16 @@ var newToMarkdownOptions = require('./newToMarkdownOptions');
 	};
 
 	var convertBbcodeToMarkdown = function(str, options) {
-		return convertHtmlToMarkdown(convertBbcodeToHml(str), options);
+		var html = convertBbcodeToHml(str);
+		var md = html;
+		try {
+			md = convertHtmlToMarkdown(html, options);
+		} catch(e) {
+			// fallback to htmlMdjs if toMarkdown fails
+			md = htmlMdjs(html);
+		}
+		return md;
+
 	};
 
 	// backward compatible
