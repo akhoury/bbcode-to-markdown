@@ -6,9 +6,11 @@ var newLineTags = ['br'];
 var ignoredTags = ['time', 'attach'];
 var quoteTags = ['quote'];
 var simpleTags = ['spoiler'];
-var maybeSelfAttrTags = ['ftp', 'anchor', 'iurl', 'email'];
+var codeTags = ['php'];
+var maybeSelfAttrTags = [];
+var maybeSelfAttrAnchorTags = ['ftp', 'anchor', 'iurl', 'email', 'u'];
 var contentOnlyTags = [
-    'youtube',
+	'youtube',
     'soundcloud',
     'vimeo',
     'font',
@@ -23,6 +25,7 @@ var contentOnlyTags = [
     'mumble',
     'presentation',
     'rtl',
+    's',
     'align',
     'ltr',
     'shadow',
@@ -129,9 +132,23 @@ var ContentOnlyTag = (function(_super) {
         }
         MaybeSelfAttrTag.prototype._toHTML = function() {
             var selfAttrValue = this.params[this.name];
-            return (selfAttrValue ? selfAttrValue + ' ' : '') + this.renderer.strip(this.getContent(true));
+            return (selfAttrValue ? selfAttrValue + ' ' : '') + this.renderer.strip(this.getContent());
         };
         return MaybeSelfAttrTag;
+    })(bbcode.Tag),
+
+    MaybeSelfAttrAnchorTag = (function(_super) {
+        __extends(MaybeSelfAttrAnchorTag, _super);
+        function MaybeSelfAttrAnchorTag() {
+				MaybeSelfAttrAnchorTag.__super__.constructor.apply(this, arguments);
+		}
+		MaybeSelfAttrAnchorTag.prototype._toHTML = function() {
+			var url = this.params[this.name] || this.params['url'] || this.params['link'];
+			var content = this.getContent() || '';
+
+            return (url ? '<a href="' + url + '" target="_blank">' + (content || url) + '</a>' : content);
+        };
+        return MaybeSelfAttrAnchorTag;
     })(bbcode.Tag),
 
     LiTag = (function(_super) {
@@ -140,10 +157,18 @@ var ContentOnlyTag = (function(_super) {
             LiTag.__super__.constructor.apply(this, arguments);
         }
         LiTag.prototype._toHTML = function() {
-            return '- ' + this.renderer.strip(this.getContent(true)) + '<br>';
+            return '<li>' + this.getContent() + '</li>';
         };
         return LiTag;
-    })(bbcode.Tag);
+    })(bbcode.Tag),
+
+    CodeTag = (function(_super) {
+        __extends(CodeTag, _super);
+        function CodeTag() {
+			CodeTag.__super__.constructor.apply(this, arguments);
+        }
+        return CodeTag;
+    })(bbcode.BUILTIN.code);
 
 var newTags = [];
 
@@ -169,10 +194,12 @@ simpleTags.forEach(function(tag) {
 });
 
 pushTags(contentOnlyTags, ContentOnlyTag);
+pushTags(codeTags, CodeTag);
 pushTags(liTags, LiTag);
 pushTags(newLineTags, NewlineTag);
 pushTags(ignoredTags, IgnoredTag);
 pushTags(quoteTags, QuoteTag);
 pushTags(maybeSelfAttrTags, MaybeSelfAttrTag);
+pushTags(maybeSelfAttrAnchorTags, MaybeSelfAttrAnchorTag);
 
 module.exports = newTags;
