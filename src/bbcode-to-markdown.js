@@ -19,6 +19,7 @@ var newToMarkdownOptions = require('./newToMarkdownOptions');
 
 (function(module) {
 
+	var brRegExp = /<br\s*[\/]?>/gmi;
 	var htmlMdjs = function (str) {
 		var window = jsdom.jsdom(null, null, {features: {FetchExternalResources: false}}).parentWindow;
 
@@ -40,20 +41,18 @@ var newToMarkdownOptions = require('./newToMarkdownOptions');
 	};
 
 	var convertHtmlToMarkdown = function(str, options) {
-		return toMarkdown(str, extend(true, {}, newToMarkdownOptions, options));
+		var md = str;
+		try {
+			md = toMarkdown(str, extend(true, {}, newToMarkdownOptions, options));
+		} catch(e) {
+			// fallback to htmlMdjs if toMarkdown fails
+			md = htmlMdjs(str);
+		}
+		return md;
 	};
 
 	var convertBbcodeToMarkdown = function(str, options) {
-		var html = convertBbcodeToHml(str);
-		var md = html;
-		try {
-			md = convertHtmlToMarkdown(html, options);
-		} catch(e) {
-			// fallback to htmlMdjs if toMarkdown fails
-			md = htmlMdjs(html);
-		}
-		return md;
-
+		return convertHtmlToMarkdown(convertBbcodeToHml(str), options);
 	};
 
 	// backward compatible
