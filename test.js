@@ -1,4 +1,4 @@
-var convert = require('./bbcode-to-markdown');
+var convert = require('./src/bbcode-to-markdown');
 
 var strings = [
 	'[b]BAA [/b]',
