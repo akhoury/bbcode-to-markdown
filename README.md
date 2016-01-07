@@ -12,7 +12,7 @@ convert('[b]oh hai[/b]'); // **oh hai**
 ```
 
 ### new or unconverted tags?
-submit an [issue](https://github.com/neocotic/html.md), with input example
+submit an [issue](https://github.com/akhoury/bbcode-to-markdown/issues), with input example
 
 ### credits
 based off of these main libs
