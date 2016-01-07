@@ -46,8 +46,8 @@
   },
   {
 	"raw": "[flash=200, 200]http://somefile.swf[/flash]",
-	"html": "<a href=\"http://somefile.swf\" target=\"_blank\">http://somefile.swf</a>",
-	"md": "[http://somefile.swf](http://somefile.swf)"
+	"html": "http://somefile.swf",
+	"md": "http://somefile.swf"
   },
   {
 	"raw": "[green]text or more BB Code[/green]",
@@ -68,11 +68,6 @@
 	"raw": "[left]blocks, text or more BB Code[/left]",
 	"html": "blocks, text or more BB Code",
 	"md": "blocks, text or more BB Code"
-  },
-  {
-	"raw": "[list type=lower-greek] [li]list item (see <a href=\"http://wiki.simplemachines.org/smf/Li\" title=\"Li\">li</a>)[/li] [li]another list item[/li] [/list]",
-	"html": "<ul><li>list item (see <a href=\"<a href=\"http://wiki.simplemachines.org/smf/Li\" target=\"_blank\">http://wiki.simplemachines.org/smf/Li</a>\" title=\"Li\">li</a>)</li> <li>another list item</li></ul>",
-	"md": "*   list item (see [http://wiki.simplemachines.org/smf/Li](<a href=)\" title=\"Li\">li)\n*   another list item"
   },
   {
 	"raw": "[me=username]does an action[/me]",
@@ -178,5 +173,10 @@
 	"raw": "[code] php echo \"hai\" [/code]",
 	"html": "<pre> php echo \"hai\" </pre>",
 	"md": "```\n php echo \"hai\" \n```"
+  },
+  {
+	"raw": "<a href=\"http://www.example.net\">AAA</a>",
+	"html": "<a href=\"http://www.example.net\">AAA</a>",
+	"md": "[AAA](http://www.example.net)"
   }
 ]
