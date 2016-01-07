@@ -1,0 +1,182 @@
+[
+  {
+	"raw": "[b]BAA [/b]",
+	"html": "<strong>BAA </strong>",
+	"md": "**BAA**"
+  },
+  {
+	"raw": "[red]BAA <br><br><br> AM!![/red]",
+	"html": "BAA <br><br><br> AM!!",
+	"md": "BAA\n\nAM!!"
+  },
+  {
+	"raw": "[spoiler yo=dawg]BAAAM!![/spoiler]",
+	"html": "<spoiler yo=\"dawg\">BAAAM!!</spoiler>",
+	"md": "<spoiler yo=\"dawg\">BAAAM!!</spoiler>"
+  },
+  {
+	"raw": "[quote author=Luke Larris link=topic=2835.msg20559#msg20559 date=1405282198]<br />test<br />[/quote]<br /><br />hey!",
+	"html": "<small>@Luke said:<br></small><blockquote><br />test<br /></blockquote><br /><br />hey!",
+	"md": "<small>@Luke said:\n</small>\n\n> test\n\nhey!"
+  },
+  {
+	"raw": "[abbr=\"a.k.a.\"]Unknown W. Brackets[/abbr]",
+	"html": "Unknown W. Brackets",
+	"md": "Unknown W. Brackets"
+  },
+  {
+	"raw": "Here is some text in the default direction and<br> [bdo=rtl]Here is some right-to-left text[/bdo]",
+	"html": "Here is some text in the default direction and<br> Here is some right-to-left text",
+	"md": "Here is some text in the default direction and\nHere is some right-to-left text"
+  },
+  {
+	"raw": "[blue]text or more BB Code[/blue]",
+	"html": "text or more BB Code",
+	"md": "text or more BB Code"
+  },
+  {
+	"raw": "[center]blocks, text or more BB Code[/center]",
+	"html": "blocks, text or more BB Code",
+	"md": "blocks, text or more BB Code"
+  },
+  {
+	"raw": "[color=fuchsia]text or more BB Code[/color]",
+	"html": "text or more BB Code",
+	"md": "text or more BB Code"
+  },
+  {
+	"raw": "[flash=200, 200]http://somefile.swf[/flash]",
+	"html": "<a href=\"http://somefile.swf\" target=\"_blank\">http://somefile.swf</a>",
+	"md": "[http://somefile.swf](http://somefile.swf)"
+  },
+  {
+	"raw": "[green]text or more BB Code[/green]",
+	"html": "text or more BB Code",
+	"md": "text or more BB Code"
+  },
+  {
+	"raw": "[hr]",
+	"html": "<hr />",
+	"md": "* * *"
+  },
+  {
+	"raw": "[img width=30]http:⁄⁄wiki.simplemachines.org/smf/images/1/19/Button_media.png[/img]",
+	"html": "<img src=\"http:⁄⁄wiki.simplemachines.org/smf/images/1/19/Button_media.png\" width=\"30\" />",
+	"md": "![](http:⁄⁄wiki.simplemachines.org/smf/images/1/19/Button_media.png)"
+  },
+  {
+	"raw": "[left]blocks, text or more BB Code[/left]",
+	"html": "blocks, text or more BB Code",
+	"md": "blocks, text or more BB Code"
+  },
+  {
+	"raw": "[list type=lower-greek] [li]list item (see <a href=\"http://wiki.simplemachines.org/smf/Li\" title=\"Li\">li</a>)[/li] [li]another list item[/li] [/list]",
+	"html": "<ul><li>list item (see <a href=\"<a href=\"http://wiki.simplemachines.org/smf/Li\" target=\"_blank\">http://wiki.simplemachines.org/smf/Li</a>\" title=\"Li\">li</a>)</li> <li>another list item</li></ul>",
+	"md": "*   list item (see [http://wiki.simplemachines.org/smf/Li](<a href=)\" title=\"Li\">li)\n*   another list item"
+  },
+  {
+	"raw": "[me=username]does an action[/me]",
+	"html": "does an action",
+	"md": "does an action"
+  },
+  {
+	"raw": "[nobbc][b]BB Code[/b][/nobbc]",
+	"html": "<strong>BB Code</strong>",
+	"md": "**BB Code**"
+  },
+  {
+	"raw": "[pre]example pre[/pre]",
+	"html": "<pre>example pre</pre>",
+	"md": "```\nexample pre\n```"
+  },
+  {
+	"raw": "[code]example code[/code]",
+	"html": "<pre>example code</pre>",
+	"md": "```\nexample code\n```"
+  },
+  {
+	"raw": "[code lang=javascript]example code[/code]",
+	"html": "<pre class=\"prettyprint lang-javascript\">example code</pre>",
+	"md": "```\nexample code\n```"
+  },
+  {
+	"raw": "[code lang=javascript code=inline]example code[/code]",
+	"html": "<code>example code</code>",
+	"md": "`example code`"
+  },
+  {
+	"raw": "[red]text or more BB Code[/red]",
+	"html": "text or more BB Code",
+	"md": "text or more BB Code"
+  },
+  {
+	"raw": "[rtl]blocks, text or more BB Code![/rtl]",
+	"html": "blocks, text or more BB Code!",
+	"md": "blocks, text or more BB Code!"
+  },
+  {
+	"raw": "[shadow=red,left]Hello[/shadow]",
+	"html": "Hello",
+	"md": "Hello"
+  },
+  {
+	"raw": "normal[sub]subscript[/sub]",
+	"html": "normalsubscript",
+	"md": "normalsubscript"
+  },
+  {
+	"raw": "[table]<br>&nbsp;[tr][td]text[/td][td]or more[/td][/tr]<br>&nbsp;[tr][td]BB[/td][td]Code[/td][/tr]<br>[/table]",
+	"html": "<table><tr><td>text</td><td>or more</td></tr><tr><td>BB</td><td>Code</td></tr></table>",
+	"md": "| text | or more |\n| BB | Code |"
+  },
+  {
+	"raw": "[time]1132812640[/time]",
+	"html": "",
+	"md": ""
+  },
+  {
+	"raw": "[tt]text or more BB Code[/tt]",
+	"html": "text or more BB Code",
+	"md": "text or more BB Code"
+  },
+  {
+	"raw": "[url]http://www.bbcode.org/[/url]",
+	"html": "<a href=\"http://www.bbcode.org/\" target=\"_blank\">http://www.bbcode.org/</a>",
+	"md": "[http://www.bbcode.org/](http://www.bbcode.org/)"
+  },
+  {
+	"raw": "[url=http://www.bbcode.org/]This be bbcode.org![/url]",
+	"html": "<a href=\"http://www.bbcode.org/\" target=\"_blank\">This be bbcode.org!</a>",
+	"md": "[This be bbcode.org!](http://www.bbcode.org/)"
+  },
+  {
+	"raw": "[anchor=http://www.bbcode.org]text or more BB Code[/anchor];",
+	"html": "<a href=\"http://www.bbcode.org\" target=\"_blank\">text or more BB Code</a>;",
+	"md": "[text or more BB Code](http://www.bbcode.org);"
+  },
+  {
+	"raw": "[ftp=ftp://somedomain.com]text or more BB Code[/ftp], [ftp]ftp://somedomain.com[/ftp]",
+	"html": "<a href=\"ftp://somedomain.com\" target=\"_blank\">text or more BB Code</a>, ftp://somedomain.com",
+	"md": "[text or more BB Code](ftp://somedomain.com), ftp://somedomain.com"
+  },
+  {
+	"raw": "[b][url=http://www.example.com/example.mov]Foo Bar Zee (77.77MB)[/url][/b]",
+	"html": "<strong><a href=\"http://www.example.com/example.mov\" target=\"_blank\">Foo Bar Zee (77.77MB)</a></strong>",
+	"md": "**[Foo Bar Zee (77.77MB)](http://www.example.com/example.mov)**"
+  },
+  {
+	"raw": "A mathematical range breaks document <3, 5]\nThis text will be lost",
+	"html": "A mathematical range breaks document <3, 5]<br />This text will be lost",
+	"md": "A mathematical range breaks document <3, 5]\nThis text will be lost"
+  },
+  {
+	"raw": "[list type=lower-greek]\n[li]list item (see [url=http://wiki.simplemachines.org/smf/Li]Text[/url])[/li]\n[li]another list item[/li]\n[li][b]another list item[/b][/li]\n[/list]",
+	"html": "<ul><li>list item (see <a href=\"http://wiki.simplemachines.org/smf/Li\" target=\"_blank\">Text</a>)</li><br /><li>another list item</li><br /><li><strong>another list item</strong></li></ul>",
+	"md": "*   list item (see [Text](http://wiki.simplemachines.org/smf/Li))\n\n*   another list item\n\n*   **another list item**"
+  },
+  {
+	"raw": "[code] php echo \"hai\" [/code]",
+	"html": "<pre> php echo \"hai\" </pre>",
+	"md": "```\n php echo \"hai\" \n```"
+  }
+]
