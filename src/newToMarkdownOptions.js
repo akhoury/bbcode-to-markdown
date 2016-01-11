@@ -9,15 +9,27 @@ var options = extend(true, {
 	converters: [
 		{
 			filter: 'pre',
-			replacement: function (content) {
+			replacement: function (innerHTML) {
 				debugger;
-				return '```\n' + content + '\n```';
+				return '```\n' + innerHTML + '\n```';
 			}
 		},
 		{
 			filter: 'spoiler',
-			replacement: function (content) {
-				return '\n>! ' + content.split('\n').join('\n>! ');
+			replacement: function (innerHTML) {
+				return '\n>! ' + (innerHTML || '').split('\n').join('\n>! ');
+			}
+		},
+		{
+			filter: ['html', 'body', 'span', 'div'],
+			replacement: function(innerHTML) {
+				return innerHTML;
+			}
+		},
+		{
+			filter: ['head', 'script', 'style'],
+			replacement: function() {
+				return '';
 			}
 		}
 	]
