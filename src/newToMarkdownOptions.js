@@ -21,13 +21,19 @@ var options = extend(true, {
 			}
 		},
 		{
+			filter: 'strike',
+			replacement: function (innerHTML) {
+				return '~~' + innerHTML + '~~';
+			}
+		},
+		{
 			filter: ['html', 'body', 'span', 'div'],
 			replacement: function(innerHTML) {
 				return innerHTML;
 			}
 		},
 		{
-			filter: ['head', 'script', 'style'],
+			filter: ['head', 'script', 'style', 'link', 'meta', 'input', 'textarea', 'button'],
 			replacement: function() {
 				return '';
 			}

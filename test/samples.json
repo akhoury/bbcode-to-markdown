@@ -12,7 +12,7 @@
   {
 	"raw": "[spoiler yo=dawg]BAAAM!![/spoiler]",
 	"html": "<spoiler yo=\"dawg\">BAAAM!!</spoiler>",
-	"md": "<spoiler yo=\"dawg\">BAAAM!!</spoiler>"
+	"md": ">! BAAAM!!"
   },
   {
 	"raw": "[quote author=Luke Larris link=topic=2835.msg20559#msg20559 date=1405282198]<br />test<br />[/quote]<br /><br />hey!",
@@ -178,5 +178,15 @@
 	"raw": "<a href=\"http://www.example.net\">AAA</a>",
 	"html": "<a href=\"http://www.example.net\">AAA</a>",
 	"md": "[AAA](http://www.example.net)"
+  },
+  {
+	"raw": "<span style=\"color: red\">AAA</span>",
+	"html": "<span style=\"color: red\">AAA</span>",
+	"md": "AAA"
+  },
+  {
+	"raw": "<strike style=\"color: red\">AAA</strike>",
+	"html": "<strike style=\"color: red\">AAA</strike>",
+	"md": "~~AAA~~"
   }
 ]
