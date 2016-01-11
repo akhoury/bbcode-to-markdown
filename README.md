@@ -16,7 +16,7 @@ submit an [issue](https://github.com/akhoury/bbcode-to-markdown/issues), with in
 
 ### Credits
 based off of these main libs
-- [bbcodejs](https://github.com/vishnevskiy/bbcodejs) (forked for good intentions)
+- [bbcodejs](https://github.com/akhoury/bbcodejs) (forked for good intentions)
 - [to-markdown](https://github.com/domchristie/to-markdown)
 
 ### License
