@@ -113,8 +113,8 @@ var ContentOnlyTag = (function(_super) {
 
             if (citation) {
                 pieces.push('<small>');
-                pieces.push('@' + citation.split(',')[0] + ' said:<br>');
-                pieces.push('</small>');
+                pieces.push('@' + citation.split(',')[0].split(';')[0] + ' said:');
+                pieces.push('</small><br>');
             }
 
             pieces.push('<blockquote>' + this.getContent() + '</blockquote>');

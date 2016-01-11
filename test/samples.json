@@ -16,8 +16,18 @@
   },
   {
 	"raw": "[quote author=Luke Larris link=topic=2835.msg20559#msg20559 date=1405282198]<br />test<br />[/quote]<br /><br />hey!",
-	"html": "<small>@Luke said:<br></small><blockquote><br />test<br /></blockquote><br /><br />hey!",
-	"md": "<small>@Luke said:\n</small>\n\n> test\n\nhey!"
+	"html": "<small>@Luke said:</small><br><blockquote><br />test<br /></blockquote><br /><br />hey!",
+	"md": "@Luke said:\n\n> test\n\nhey!"
+  },
+  {
+	"raw": "[quote author=\"Luke Larris\" link=topic=2835.msg20559#msg20559 date=1405282198]<br />test<br />[/quote]<br /><br />hey!",
+	"html": "<small>@Luke Larris said:</small><br><blockquote><br />test<br /></blockquote><br /><br />hey!",
+	"md": "@Luke Larris said:\n\n> test\n\nhey!"
+  },
+  {
+	"raw": "[quote=aziz;1234]<br />test<br />[/quote]<br /><br />hey!",
+	"html": "<small>@aziz said:</small><br><blockquote><br />test<br /></blockquote><br /><br />hey!",
+	"md": "@aziz said:\n\n> test\n\nhey!"
   },
   {
 	"raw": "[abbr=\"a.k.a.\"]Unknown W. Brackets[/abbr]",
