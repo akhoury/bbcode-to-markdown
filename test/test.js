@@ -13,4 +13,4 @@ samples.forEach(function(sample, i) {
 	assert(convert.bbcodeToHTML(sample.raw), sample.html, sample, i, "bbcodeToHTML");
 	assert(convert.bbcodeToMarkdown(sample.raw), sample.md, sample, i, "bbcodeToMarkdown");
 });
-console.log("All good, " + samples.length + " passed.");
+console.log("All good, " + samples.length + " tests passed.");
