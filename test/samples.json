@@ -15,6 +15,11 @@
 	"md": ">! BAAAM!!"
   },
   {
+	"raw": "[quote author=&quot;Luke&quot;]<br />test<br />[/quote]<br /><br />hey!",
+	"html": "<small>@Luke:</small><br><blockquote><br />test<br /></blockquote><br /><br />hey!",
+	"md": "@Luke:\n\n> test\n\nhey!"
+  },
+  {
 	"raw": "[quote author=Luke Larris link=topic=2835.msg20559#msg20559 date=1405282198]<br />test<br />[/quote]<br /><br />hey!",
 	"html": "<small>@Luke:</small><br><blockquote><br />test<br /></blockquote><br /><br />hey!",
 	"md": "@Luke:\n\n> test\n\nhey!"
@@ -25,9 +30,9 @@
 	"md": "@Luke Larris:\n\n> test\n\nhey!"
   },
   {
-	"raw": "[quote=aziz;1234]<br />test<br />[/quote]<br /><br />hey!",
-	"html": "<small>@aziz:</small><br><blockquote><br />test<br /></blockquote><br /><br />hey!",
-	"md": "@aziz:\n\n> test\n\nhey!"
+	"raw": "[quote=Luke;1234]<br />test<br />[/quote]<br /><br />hey!",
+	"html": "<small>@Luke:</small><br><blockquote><br />test<br /></blockquote><br /><br />hey!",
+	"md": "@Luke:\n\n> test\n\nhey!"
   },
   {
 	"raw": "[abbr=\"a.k.a.\"]Unknown W. Brackets[/abbr]",

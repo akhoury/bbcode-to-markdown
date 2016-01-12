@@ -1,4 +1,6 @@
 var bbcode = require('bbcodejs');
+var Entities = require('html-entities').AllHtmlEntities;
+var entities = new Entities();
 
 // todo: move these to a .json file
 var liTags = ['li'];
@@ -130,7 +132,7 @@ var ContentOnlyTag = (function(_super) {
 
             if (citation) {
                 pieces.push('<small>');
-                pieces.push('@' + citation.split(',')[0].split(';')[0] + ':');
+                pieces.push('@' + entities.decode(citation).replace(/\"/g, '').split(',')[0].split(';')[0] + ':');
                 pieces.push('</small><br>');
             }
 
