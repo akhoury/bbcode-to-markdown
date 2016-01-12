@@ -3,17 +3,31 @@ var bbcode = require('bbcodejs');
 // todo: move these to a .json file
 var liTags = ['li'];
 var newLineTags = ['br'];
-var ignoredTags = ['time', 'attach'];
+var ignoredTags = [
+	'time',
+	'attach',
+
+	// http://forum.thesettlersonline.net/misc.php?do=bbcode
+	'sigpic',
+	'thread',
+	'post',
+	'clear'
+];
+var anameTags = ['aname']; // see [jumpto]
+var imageTags = ['ifl', 'ifr'];
+var codeTags = ['php', 'html'];
+
+var strikeTags = ['strike'];
 var quoteTags = ['quote'];
 var simpleTags = ['spoiler'];
-var codeTags = ['php'];
 var maybeSelfAttrTags = [];
-var maybeSelfAttrAnchorTags = ['ftp', 'anchor', 'iurl', 'email', 'u'];
+var maybeSelfAttrAnchorTags = ['ftp', 'anchor', 'iurl', 'email', 'u', 'jumpto'];
 var contentOnlyTags = [
 	'youtube',
     'soundcloud',
     'vimeo',
     'font',
+    'video',
     'embed',
     'flash',
     'bdo',
@@ -25,7 +39,6 @@ var contentOnlyTags = [
     'mumble',
     'presentation',
     'rtl',
-    's',
     'align',
     'ltr',
     'shadow',
@@ -40,6 +53,10 @@ var contentOnlyTags = [
     'move',
     'u',
     'indent',
+
+	// http://forum.thesettlersonline.net/misc.php?do=bbcode
+    'highlight',
+    'noparse',
 
     // list of colors from http://if.invisionfree.com/topic/423042/1/
     'Aliceblue', 'Antiquewhite', 'Aqua', 'Aquamarine', 'Azure', 'Beige', 'Bisque', 'Black', 'Blanchedalmond', 'Blue',
@@ -162,13 +179,40 @@ var ContentOnlyTag = (function(_super) {
         return LiTag;
     })(bbcode.Tag),
 
+	AnameTag = (function(_super) {
+        __extends(AnameTag, _super);
+        function AnameTag() {
+			AnameTag.__super__.constructor.apply(this, arguments);
+        }
+		AnameTag.prototype._toHTML = function() {
+            return '<div id="' + this.getContent() + '"></div>';
+        };
+        return AnameTag;
+    })(bbcode.Tag),
+
+	StrikeTag = (function(_super) {
+        __extends(StrikeTag, _super);
+        function StrikeTag() {
+			StrikeTag.__super__.constructor.apply(this, arguments);
+        }
+        return StrikeTag;
+    })(bbcode.createSimpleTag('strike')),
+
     CodeTag = (function(_super) {
         __extends(CodeTag, _super);
         function CodeTag() {
 			CodeTag.__super__.constructor.apply(this, arguments);
         }
         return CodeTag;
-    })(bbcode.BUILTIN.code);
+    })(bbcode.BUILTIN.code),
+
+	ImageTag = (function(_super) {
+        __extends(ImageTag, _super);
+        function ImageTag() {
+			ImageTag.__super__.constructor.apply(this, arguments);
+        }
+        return ImageTag;
+    })(bbcode.BUILTIN.img);
 
 var newTags = [];
 
@@ -194,7 +238,10 @@ simpleTags.forEach(function(tag) {
 });
 
 pushTags(contentOnlyTags, ContentOnlyTag);
+pushTags(anameTags, AnameTag);
 pushTags(codeTags, CodeTag);
+pushTags(strikeTags, StrikeTag);
+pushTags(imageTags, ImageTag);
 pushTags(liTags, LiTag);
 pushTags(newLineTags, NewlineTag);
 pushTags(ignoredTags, IgnoredTag);

@@ -198,5 +198,20 @@
 	"raw": "<strike style=\"color: red\">AAA</strike>",
 	"html": "<strike style=\"color: red\">AAA</strike>",
 	"md": "~~AAA~~"
+  },
+  {
+	"raw": "[strike]AAAa[/strike]",
+	"html": "<strike>AAAa</strike>",
+	"md": "~~AAAa~~"
+  },
+  {
+	"raw": "[s]AAA[/s]",
+	"html": "<strike>AAA</strike>",
+	"md": "~~AAA~~"
+  },
+  {
+	"raw": "[sigpic]AAA[/sigpic]",
+	"html": "",
+	"md": ""
   }
 ]
