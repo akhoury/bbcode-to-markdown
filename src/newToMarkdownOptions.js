@@ -27,7 +27,7 @@ var options = extend(true, {
 			}
 		},
 		{
-			filter: ['html', 'body', 'span', 'div', 'small'],
+			filter: ['html', 'body', 'span', 'div', 'small', 'font'],
 			replacement: function(innerHTML) {
 				return innerHTML;
 			}
