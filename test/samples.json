@@ -218,5 +218,10 @@
 	"raw": "[sigpic]AAA[/sigpic]",
 	"html": "",
 	"md": ""
+  },
+  {
+	"raw": "<a href=\"http://steamcommunity.com/sharedfiles/filedetails/?id=318020105\" target=\"_blank\"><font color=\"#ffa500\">http://steamcommunity.com/sharedfiles/filedetails/?id=318020105</font></a",
+	"html": "<a href=\"http://steamcommunity.com/sharedfiles/filedetails/?id=318020105\" target=\"_blank\"><font color=\"#ffa500\">http://steamcommunity.com/sharedfiles/filedetails/?id=318020105</font></a",
+	"md": "[http://steamcommunity.com/sharedfiles/filedetails/?id=318020105](http://steamcommunity.com/sharedfiles/filedetails/?id=318020105)"
   }
 ]
