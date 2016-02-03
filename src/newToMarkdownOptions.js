@@ -10,7 +10,6 @@ var options = extend(true, {
 		{
 			filter: 'pre',
 			replacement: function (innerHTML) {
-				debugger;
 				return '```\n' + innerHTML + '\n```';
 			}
 		},
