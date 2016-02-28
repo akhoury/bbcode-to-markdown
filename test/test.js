@@ -1,5 +1,4 @@
 var convert = require('../src/bbcode-to-markdown');
-
 var samples = require('./samples.json');
 
 var assert = function (a, b, sample, i, what) {
@@ -10,7 +9,7 @@ var assert = function (a, b, sample, i, what) {
 };
 
 samples.forEach(function(sample, i) {
-	assert(convert.bbcodeToHTML(sample.raw), sample.html, sample, i, "bbcodeToHTML");
-	assert(convert.bbcodeToMarkdown(sample.raw), sample.md, sample, i, "bbcodeToMarkdown");
+	assert(convert.bbcodeToHTML(sample.raw, !sample.noDecode === false), sample.html, sample, i, "bbcodeToHTML");
+	assert(convert.bbcodeToMarkdown(sample.raw, {fallback: !sample.fallback === false }), sample.md, sample, i, "bbcodeToMarkdown");
 });
 console.log("All good, " + samples.length + " tests passed.");
