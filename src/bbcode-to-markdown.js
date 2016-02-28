@@ -35,11 +35,11 @@ var newToMarkdownOptions = require('./newToMarkdownOptions');
 	};
 
 	var urlRegExp = /\[url=\\"(.*)\\"\]/gi;
-	var convertBbcodeToHml = function (str, noDecode) {
+	var convertBbcodeToHml = function (str, options) {
 		str = str.replace(urlRegExp, '[url=$1]');
 		str = parser.toHTML(str);
 
-		if (!noDecode) {
+		if (!options || !options.noDecode) {
 			str = entities.decode(str);
 		}
 		return str;
