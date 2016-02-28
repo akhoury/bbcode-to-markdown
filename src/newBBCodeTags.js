@@ -127,7 +127,7 @@ var ContentOnlyTag = (function(_super) {
         }
 
         QuoteTag.prototype._toHTML = function() {
-            var citation = this.params['quote'] || this.params['author'],
+            var citation = this.params['quote'] || this.params['author'] || this.params['user'],
                 pieces = [];
 
             if (citation) {
