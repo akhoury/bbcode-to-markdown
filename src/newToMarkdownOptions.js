@@ -16,7 +16,7 @@ var options = extend(true, {
 		{
 			filter: 'spoiler',
 			replacement: function (innerHTML) {
-				return '\n>! ' + (innerHTML || '').split('\n').join('\n>! ');
+				return '\n>! ' + (innerHTML || '').split(/\n[\n]+/).join('\n\n>! ');
 			}
 		},
 		{
