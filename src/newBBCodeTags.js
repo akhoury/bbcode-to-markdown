@@ -6,14 +6,14 @@ var entities = new Entities();
 var liTags = ['li'];
 var newLineTags = ['br'];
 var ignoredTags = [
-	'time',
-	'attach',
+    'time',
+    'attach',
 
-	// http://forum.thesettlersonline.net/misc.php?do=bbcode
-	'sigpic',
-	'thread',
-	'post',
-	'clear'
+    // http://forum.thesettlersonline.net/misc.php?do=bbcode
+    'sigpic',
+    'thread',
+    'post',
+    'clear'
 ];
 var anameTags = ['aname']; // see [jumpto]
 var imageTags = ['ifl', 'ifr'];
@@ -26,7 +26,7 @@ var simpleTags = ['spoiler'];
 var maybeSelfAttrTags = [];
 var maybeSelfAttrAnchorTags = ['ftp', 'anchor', 'iurl', 'email', 'u', 'jumpto'];
 var contentOnlyTags = [
-	'youtube',
+    'youtube',
     'soundcloud',
     'vimeo',
     'font',
@@ -58,7 +58,7 @@ var contentOnlyTags = [
     'uline',
     'indent',
 
-	// http://forum.thesettlersonline.net/misc.php?do=bbcode
+    // http://forum.thesettlersonline.net/misc.php?do=bbcode
     'highlight',
     'noparse',
 
@@ -87,147 +87,147 @@ var __extends = function(child, parent) { for (var key in parent) { if (__hasPro
 
 // new tag Classes
 var ContentOnlyTag = (function(_super) {
-        __extends(ContentOnlyTag, _super);
-        function ContentOnlyTag() {
-            ContentOnlyTag.__super__.constructor.apply(this, arguments);
-        }
-        ContentOnlyTag.prototype._toHTML = function() {
-            return this.getContent();
-        };
-        return ContentOnlyTag;
-    })(bbcode.Tag),
+      __extends(ContentOnlyTag, _super);
+      function ContentOnlyTag() {
+          ContentOnlyTag.__super__.constructor.apply(this, arguments);
+      }
+      ContentOnlyTag.prototype._toHTML = function() {
+          return this.getContent();
+      };
+      return ContentOnlyTag;
+  })(bbcode.Tag),
 
-    NewlineTag = (function(_super) {
-        __extends(NewlineTag, _super);
-        function NewlineTag() {
-            NewlineTag.__super__.constructor.apply(this, arguments);
-        }
-        NewlineTag.prototype._toHTML = function() {
-            return '<br>';
-        };
-        return NewlineTag;
-    })(bbcode.Tag),
+  NewlineTag = (function(_super) {
+      __extends(NewlineTag, _super);
+      function NewlineTag() {
+          NewlineTag.__super__.constructor.apply(this, arguments);
+      }
+      NewlineTag.prototype._toHTML = function() {
+          return '<br>';
+      };
+      return NewlineTag;
+  })(bbcode.Tag),
 
-    IgnoredTag = (function(_super) {
-        __extends(IgnoredTag, _super);
-        function IgnoredTag() {
-            IgnoredTag.__super__.constructor.apply(this, arguments);
-        }
-        IgnoredTag.prototype._toHTML = function() {
-            return '';
-        };
-        return IgnoredTag;
-    })(bbcode.Tag),
+  IgnoredTag = (function(_super) {
+      __extends(IgnoredTag, _super);
+      function IgnoredTag() {
+          IgnoredTag.__super__.constructor.apply(this, arguments);
+      }
+      IgnoredTag.prototype._toHTML = function() {
+          return '';
+      };
+      return IgnoredTag;
+  })(bbcode.Tag),
 
-    QuoteTag = (function(_super) {
-        __extends(QuoteTag, _super);
+  QuoteTag = (function(_super) {
+      __extends(QuoteTag, _super);
 
-        function QuoteTag() {
-            QuoteTag.__super__.constructor.apply(this, arguments);
-            this.STRIP_INNER = true;
-            this.STRIP_OUTER = true;
-        }
+      function QuoteTag() {
+          QuoteTag.__super__.constructor.apply(this, arguments);
+          this.STRIP_INNER = true;
+          this.STRIP_OUTER = true;
+      }
 
-        QuoteTag.prototype._toHTML = function() {
-            var citation = this.params['quote'] || this.params['author'] || this.params['user'],
-                pieces = [];
+      QuoteTag.prototype._toHTML = function() {
+          var citation = this.params['quote'] || this.params['author'] || this.params['user'],
+            pieces = [];
 
-            if (citation) {
-                pieces.push('<small>');
-                pieces.push('@' + entities.decode(citation).replace(/\"/g, '').split(',')[0].split(';')[0] + ':');
-                pieces.push('</small><br>');
-            }
+          if (citation) {
+              pieces.push('<small>');
+              pieces.push('@' + entities.decode(citation).replace(/\"/g, '').split(',')[0].split(';')[0] + ':');
+              pieces.push('</small><br>');
+          }
 
-            pieces.push('<blockquote>' + this.getContent() + '</blockquote>');
-            return pieces;
-        };
+          pieces.push('<blockquote>' + this.getContent() + '</blockquote>');
+          return pieces;
+      };
 
-        return QuoteTag;
+      return QuoteTag;
 
-    })(bbcode.Tag),
+  })(bbcode.Tag),
 
-    MaybeSelfAttrTag = (function(_super) {
-        __extends(MaybeSelfAttrTag, _super);
-        function MaybeSelfAttrTag() {
-            MaybeSelfAttrTag.__super__.constructor.apply(this, arguments);
-        }
-        MaybeSelfAttrTag.prototype._toHTML = function() {
-            var selfAttrValue = this.params[this.name];
-            return (selfAttrValue ? selfAttrValue + ' ' : '') + this.renderer.strip(this.getContent());
-        };
-        return MaybeSelfAttrTag;
-    })(bbcode.Tag),
+  MaybeSelfAttrTag = (function(_super) {
+      __extends(MaybeSelfAttrTag, _super);
+      function MaybeSelfAttrTag() {
+          MaybeSelfAttrTag.__super__.constructor.apply(this, arguments);
+      }
+      MaybeSelfAttrTag.prototype._toHTML = function() {
+          var selfAttrValue = this.params[this.name];
+          return (selfAttrValue ? selfAttrValue + ' ' : '') + this.renderer.strip(this.getContent());
+      };
+      return MaybeSelfAttrTag;
+  })(bbcode.Tag),
 
-    MaybeSelfAttrAnchorTag = (function(_super) {
-        __extends(MaybeSelfAttrAnchorTag, _super);
-        function MaybeSelfAttrAnchorTag() {
-				MaybeSelfAttrAnchorTag.__super__.constructor.apply(this, arguments);
-		}
-		MaybeSelfAttrAnchorTag.prototype._toHTML = function() {
-			var url = this.params[this.name] || this.params['url'] || this.params['link'];
-			var content = this.getContent() || '';
+  MaybeSelfAttrAnchorTag = (function(_super) {
+      __extends(MaybeSelfAttrAnchorTag, _super);
+      function MaybeSelfAttrAnchorTag() {
+          MaybeSelfAttrAnchorTag.__super__.constructor.apply(this, arguments);
+      }
+      MaybeSelfAttrAnchorTag.prototype._toHTML = function() {
+          var url = this.params[this.name] || this.params['url'] || this.params['link'];
+          var content = this.getContent() || '';
 
-            return (url ? '<a href="' + url + '" target="_blank">' + (content || url) + '</a>' : content);
-        };
-        return MaybeSelfAttrAnchorTag;
-    })(bbcode.Tag),
+          return (url ? '<a href="' + url + '" target="_blank">' + (content || url) + '</a>' : content);
+      };
+      return MaybeSelfAttrAnchorTag;
+  })(bbcode.Tag),
 
-    LiTag = (function(_super) {
-        __extends(LiTag, _super);
-        function LiTag() {
-            LiTag.__super__.constructor.apply(this, arguments);
-        }
-        LiTag.prototype._toHTML = function() {
-            return '<li>' + this.getContent() + '</li>';
-        };
-        return LiTag;
-    })(bbcode.Tag),
+  LiTag = (function(_super) {
+      __extends(LiTag, _super);
+      function LiTag() {
+          LiTag.__super__.constructor.apply(this, arguments);
+      }
+      LiTag.prototype._toHTML = function() {
+          return '<li>' + this.getContent() + '</li>';
+      };
+      return LiTag;
+  })(bbcode.Tag),
 
-    ItalicTag = (function(_super) {
-        __extends(LiTag, _super);
-        function LiTag() {
-            LiTag.__super__.constructor.apply(this, arguments);
-        }
-        LiTag.prototype._toHTML = function() {
-            return '<i>' + this.getContent() + '</i>';
-        };
-        return LiTag;
-    })(bbcode.Tag),
+  ItalicTag = (function(_super) {
+      __extends(LiTag, _super);
+      function LiTag() {
+          LiTag.__super__.constructor.apply(this, arguments);
+      }
+      LiTag.prototype._toHTML = function() {
+          return '<i>' + this.getContent() + '</i>';
+      };
+      return LiTag;
+  })(bbcode.Tag),
 
-	AnameTag = (function(_super) {
-        __extends(AnameTag, _super);
-        function AnameTag() {
-			AnameTag.__super__.constructor.apply(this, arguments);
-        }
-		AnameTag.prototype._toHTML = function() {
-            return '<div id="' + this.getContent() + '"></div>';
-        };
-        return AnameTag;
-    })(bbcode.Tag),
+  AnameTag = (function(_super) {
+      __extends(AnameTag, _super);
+      function AnameTag() {
+          AnameTag.__super__.constructor.apply(this, arguments);
+      }
+      AnameTag.prototype._toHTML = function() {
+          return '<div id="' + this.getContent() + '"></div>';
+      };
+      return AnameTag;
+  })(bbcode.Tag),
 
-	StrikeTag = (function(_super) {
-        __extends(StrikeTag, _super);
-        function StrikeTag() {
-			StrikeTag.__super__.constructor.apply(this, arguments);
-        }
-        return StrikeTag;
-    })(bbcode.createSimpleTag('strike')),
+  StrikeTag = (function(_super) {
+      __extends(StrikeTag, _super);
+      function StrikeTag() {
+          StrikeTag.__super__.constructor.apply(this, arguments);
+      }
+      return StrikeTag;
+  })(bbcode.createSimpleTag('strike')),
 
-    CodeTag = (function(_super) {
-        __extends(CodeTag, _super);
-        function CodeTag() {
-			CodeTag.__super__.constructor.apply(this, arguments);
-        }
-        return CodeTag;
-    })(bbcode.BUILTIN.code),
+  CodeTag = (function(_super) {
+      __extends(CodeTag, _super);
+      function CodeTag() {
+          CodeTag.__super__.constructor.apply(this, arguments);
+      }
+      return CodeTag;
+  })(bbcode.BUILTIN.code),
 
-	ImageTag = (function(_super) {
-        __extends(ImageTag, _super);
-        function ImageTag() {
-			ImageTag.__super__.constructor.apply(this, arguments);
-        }
-        return ImageTag;
-    })(bbcode.BUILTIN.img);
+  ImageTag = (function(_super) {
+      __extends(ImageTag, _super);
+      function ImageTag() {
+          ImageTag.__super__.constructor.apply(this, arguments);
+      }
+      return ImageTag;
+  })(bbcode.BUILTIN.img);
 
 var newTags = [];
 
