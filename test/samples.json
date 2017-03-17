@@ -220,13 +220,8 @@
 	"md": ""
   },
   {
-	"raw": "<a href=\"http://steamcommunity.com/sharedfiles/filedetails/?id=318020105\" target=\"_blank\"><font color=\"#ffa500\">http://steamcommunity.com/sharedfiles/filedetails/?id=318020105</font></a",
+	"raw":  "<a href=\"http://steamcommunity.com/sharedfiles/filedetails/?id=318020105\" target=\"_blank\"><font color=\"#ffa500\">http://steamcommunity.com/sharedfiles/filedetails/?id=318020105</font></a",
 	"html": "<a href=\"http://steamcommunity.com/sharedfiles/filedetails/?id=318020105\" target=\"_blank\"><font color=\"#ffa500\">http://steamcommunity.com/sharedfiles/filedetails/?id=318020105</font></a",
-	"md": "[http://steamcommunity.com/sharedfiles/filedetails/?id=318020105](http://steamcommunity.com/sharedfiles/filedetails/?id=318020105)"
-  },
-  {
-	"raw": "HTA app is currently this:``` <HTML> <HEAD> <HTA:APPLICATIONID=\"oHTA\"APPLICATIONNAME=\"myApp\"ICON=\"http://charlatanshanty.com/icon.ico\"><bayyak type=\"text/javascript\">function show(){alert(\"show alert\");}</bayyak></head><body onload=\"show()\"></body></html>```",
-	"html": "HTA app is currently this:``` <HTML> <HEAD> <HTA:APPLICATIONID=\"oHTA\"APPLICATIONNAME=\"myApp\"ICON=\"http://charlatanshanty.com/icon.ico\"><bayyak type=\"text/javascript\">function show(){alert(\"show alert\");}</bayyak></head><body onload=\"show()\"></body></html>```",
-	"md": "HTA app is currently this:``` <HTML> <HEAD> <HTA:APPLICATIONID=\"oHTA\"APPLICATIONNAME=\"myApp\"ICON=\"http://charlatanshanty.com/icon.ico\"><bayyak type=\"text/javascript\">function show(){alert(\"show alert\");}</bayyak></head><body onload=\"show()\"></body></html>```"
+	"md":   "[http://steamcommunity.com/sharedfiles/filedetails/?id=318020105](http://steamcommunity.com/sharedfiles/filedetails/?id=318020105)"
   }
 ]
