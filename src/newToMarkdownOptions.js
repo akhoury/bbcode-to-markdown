@@ -20,7 +20,7 @@ module.exports = {
             }
         },
         {
-            filter: ['html', 'body', 'span', 'div', 'small', 'font']
+            filter: ['html', 'body', 'span', 'div', 'small', 'font', 'article', 'section']
 				.concat(
 					// weird tags i came across
 					['messagetemplate', 'zone', 'item', 'content']
