@@ -58,6 +58,10 @@ var contentOnlyTags = [
     'uline',
     'indent',
 
+    // ??
+    'colgroup',
+    'col',
+
     // http://forum.thesettlersonline.net/misc.php?do=bbcode
     'highlight',
     'noparse',
