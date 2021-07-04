@@ -8,12 +8,13 @@ var newLineTags = ['br'];
 var ignoredTags = [
     'time',
     'attach',
+	'attachment',
 
     // http://forum.thesettlersonline.net/misc.php?do=bbcode
     'sigpic',
     'thread',
     'post',
-    'clear'
+    'clear',
 ];
 var anameTags = ['aname']; // see [jumpto]
 var imageTags = ['ifl', 'ifr'];
@@ -21,6 +22,7 @@ var codeTags = ['php', 'html'];
 
 var strikeTags = ['strike'];
 var italicTags = ['italic'];
+// var boldTags = ['b', 'B'];
 var quoteTags = ['quote'];
 var simpleTags = ['spoiler'];
 var maybeSelfAttrTags = [];
@@ -55,6 +57,8 @@ var contentOnlyTags = [
     'glow',
     'move',
     'u',
+	't',
+    'r',
     'uline',
     'indent',
 
@@ -198,6 +202,17 @@ var ContentOnlyTag = (function(_super) {
       return LiTag;
   })(bbcode.Tag),
 
+  BoldTag = (function(_super) {
+	__extends(LiTag, _super);
+	function LiTag() {
+		LiTag.__super__.constructor.apply(this, arguments);
+	}
+	LiTag.prototype._toHTML = function() {
+		return '<strong>' + this.getContent() + '</strong>';
+	};
+	return LiTag;
+})(bbcode.Tag),
+
   AnameTag = (function(_super) {
       __extends(AnameTag, _super);
       function AnameTag() {
@@ -261,6 +276,7 @@ pushTags(anameTags, AnameTag);
 pushTags(codeTags, CodeTag);
 pushTags(strikeTags, StrikeTag);
 pushTags(italicTags, ItalicTag);
+// pushTags(boldTags, BoldTag);
 pushTags(imageTags, ImageTag);
 pushTags(liTags, LiTag);
 pushTags(newLineTags, NewlineTag);

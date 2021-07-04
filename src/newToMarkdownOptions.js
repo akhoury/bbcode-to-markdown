@@ -1,6 +1,14 @@
 
+// handle some HTML tags, some are weird
+
 module.exports = {
     converters: [
+		// {
+        //     filter: 'a',
+        //     replacement: function (innerHTML, node) {
+		// 		return node.outerHTML;
+        //     }
+        // },
         {
             filter: 'pre',
             replacement: function (innerHTML) {
@@ -23,14 +31,14 @@ module.exports = {
             filter: ['html', 'body', 'span', 'div', 'small', 'font', 'article', 'section', 'u']
 				.concat(
 					// weird tags i came across
-					['messagetemplate', 'zone', 'item', 'content']
+					['messagetemplate', 'zone', 'item', 'content', 't', 'r', 'e', 'url', 'b', 'link_text']
 				),
             replacement: function(innerHTML) {
                 return innerHTML;
             }
         },
         {
-            filter: ['head', 'script', 'style', 'link', 'meta', 'input', 'textarea', 'button'],
+            filter: ['head', 'script', 'style', 'link', 'meta', 'input', 'textarea', 'button', 'attach', 'attachment'],
             replacement: function() {
                 return '';
             }
